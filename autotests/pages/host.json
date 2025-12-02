@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Проверка главной страницы",
+    "steps": [
+      {
+        "action": "navigate",
+        "url": "{domain}"
+      }
+    ],
+    "assertions": [
+      {
+        "type": "url",
+        "expectedUrl": "{domain}"
+      }
+    ]
+  }
+]
