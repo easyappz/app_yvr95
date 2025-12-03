@@ -1,5 +1,6 @@
 {
-  "pages": [
-    "home.json"
-  ]
+  "pages": [{
+    "name": "Тестирование стартовой страницы",
+    "filepath": "home.json"
+  }]
 }
