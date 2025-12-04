@@ -1,0 +1,50 @@
+openapi: 3.0.0
+paths:
+  /api/posts/{id}/like/:
+    post:
+      summary: Like a post
+      tags: [Posts]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Post liked
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostDetail'
+      security:
+        - CookieAuth: []
+    delete:
+      summary: Remove like from post
+      tags: [Posts]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Like removed
+      security:
+        - CookieAuth: []
+components:
+  schemas:
+    PostDetail:
+      allOf:
+        - $ref: '#/components/schemas/Post'
+        - type: object
+          properties:
+            likes:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+            comments:
+              type: array
+              items:
+                $ref: '#/components/schemas/Comment'

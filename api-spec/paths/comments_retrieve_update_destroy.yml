@@ -1,0 +1,69 @@
+openapi: 3.0.0
+paths:
+  /api/comments/{id}/:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Retrieve a comment
+      tags: [Comments]
+      responses:
+        '200':
+          description: Return comment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+      security: []
+    put:
+      summary: Update a comment
+      tags: [Comments]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [text]
+              properties:
+                text:
+                  type: string
+      responses:
+        '200':
+          description: Comment updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+      security:
+        - CookieAuth: []
+    delete:
+      summary: Delete a comment
+      tags: [Comments]
+      responses:
+        '204':
+          description: Comment deleted
+      security:
+        - CookieAuth: []
+components:
+  schemas:
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+        post:
+          $ref: '#/components/schemas/Post'
+        author:
+          $ref: '#/components/schemas/User'
+        text:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time

@@ -1,0 +1,56 @@
+openapi: 3.0.0
+paths:
+  /api/profile/me/:
+    get:
+      summary: Get current user profile
+      tags: [Profile]
+      responses:
+        '200':
+          description: Return current user profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      security:
+        - CookieAuth: []
+    patch:
+      summary: Update current user profile
+      tags: [Profile]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                about:
+                  type: string
+      responses:
+        '200':
+          description: Profile updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      security:
+        - CookieAuth: []
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        about:
+          type: string
+          nullable: true

@@ -1,0 +1,65 @@
+openapi: 3.0.0
+paths:
+  /api/posts/{id}/:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Retrieve a post
+      tags: [Posts]
+      responses:
+        '200':
+          description: Return post details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostDetail'
+      security: []
+    put:
+      summary: Update a post
+      tags: [Posts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [text]
+              properties:
+                text:
+                  type: string
+      responses:
+        '200':
+          description: Post updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostDetail'
+      security:
+        - CookieAuth: []
+    delete:
+      summary: Delete a post
+      tags: [Posts]
+      responses:
+        '204':
+          description: Post deleted
+      security:
+        - CookieAuth: []
+components:
+  schemas:
+    PostDetail:
+      allOf:
+        - $ref: '#/components/schemas/Post'
+        - type: object
+          properties:
+            likes:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+            comments:
+              type: array
+              items:
+                $ref: '#/components/schemas/Comment'

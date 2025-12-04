@@ -1,0 +1,12 @@
+openapi: 3.0.0
+paths:
+  /api/auth/logout/:
+    post:
+      summary: Logout user
+      tags: [Authentication]
+      responses:
+        '204':
+          description: Logout successful
+      security:
+        - CookieAuth: []
+components: {}

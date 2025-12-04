@@ -1,0 +1,63 @@
+openapi: 3.0.0
+paths:
+  /api/posts/{post_id}/comments/:
+    parameters:
+      - name: post_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: List comments for a post
+      tags: [Comments]
+      responses:
+        '200':
+          description: Return list of comments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+      security: []
+    post:
+      summary: Create a comment
+      tags: [Comments]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [text]
+              properties:
+                text:
+                  type: string
+      responses:
+        '201':
+          description: Comment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+      security:
+        - CookieAuth: []
+components:
+  schemas:
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+        post:
+          $ref: '#/components/schemas/Post'
+        author:
+          $ref: '#/components/schemas/User'
+        text:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
