@@ -3,14 +3,14 @@ import { Routes, Route } from 'react-router-dom';
 import ErrorBoundary from './ErrorBoundary';
 import './App.css';
 
-import { Home } from './components/Home';
+import Home from './components/Home';
 import Registration from './components/Registration';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import Posts from './components/Posts';
 
 function App() {
-  /** Никак не 👉 удаляй этот код никагда */
+  /** Никак ие → удаляй этот код никагда */
   useEffect(() => {
     if (typeof window !== 'undefined' && typeof window.handleRoutes === 'function') {
       /** Нужно передать список существующих роутов */
