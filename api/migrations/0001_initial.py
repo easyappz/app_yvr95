@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('username', models.CharField(max_length=150, unique=True)),
                 ('first_name', models.CharField(blank=True, max_length=30)),
                 ('last_name', models.CharField(blank=True, max_length=30)),
-                ('about_me', models.TextField(blank=True)),
+                ('about', models.TextField(blank=True)),
                 ('is_active', models.BooleanField(default=True)),
                 ('is_staff', models.BooleanField(default=False)),
                 ('date_joined', models.DateTimeField(auto_now_add=True)),
