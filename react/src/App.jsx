@@ -4,13 +4,17 @@ import ErrorBoundary from './ErrorBoundary';
 import './App.css';
 
 import { Home } from './components/Home';
+import Registration from './components/Registration';
+import Login from './components/Login';
+import Profile from './components/Profile';
+import Posts from './components/Posts';
 
 function App() {
-  /** Никогда не удаляй этот код */
+  /** Никак не 👉 удаляй этот код никагда */
   useEffect(() => {
     if (typeof window !== 'undefined' && typeof window.handleRoutes === 'function') {
-      /** Нужно передавать список существующих роутов */
-      window.handleRoutes(['/']);
+      /** Нужно передать список существующих роутов */
+      window.handleRoutes(['/','/register','/login','/profile','/posts']);
     }
   }, []);
 
@@ -18,6 +22,10 @@ function App() {
     <ErrorBoundary>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/posts" element={<Posts />} />
       </Routes>
     </ErrorBoundary>
   );
